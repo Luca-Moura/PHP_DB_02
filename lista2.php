@@ -13,7 +13,7 @@ SQL;
 // Executar a query e retorna dados na variável
 $res = $conn->query($sql);
 
-echo <<<HTML
+$out = <<<HTML
 
 <table>
 <tr>
@@ -27,11 +27,7 @@ HTML;
 
 while ($user = $res->fetch_assoc()) :
 
-    echo '<pre>';
-    print_r($user);
-    echo '</pre>';
-
-    echo <<<HTML
+    $out .= <<<HTML
     
 <tr>
     <td>{$user['nome']}</td>
@@ -44,6 +40,27 @@ HTML;
 
 endwhile;
 
-echo '</table>';
+$out .= '</table>';
 
 ?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Faça Contato - Todos os contatos</title>
+</head>
+
+<body>
+
+    <h2>Faça contato</h2>
+    <p>Todos os contatos (somente para o ADM).</p>
+
+    <?= $out ?>
+
+</body>
+
+</html>
