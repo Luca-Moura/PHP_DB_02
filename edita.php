@@ -2,7 +2,12 @@
 
 require('conn.php');
 
-$id = $_GET['id'];
+// Obtém o ID
+$id = intval($_GET['id']);
+
+// Se o id é inválido, volta para a listagem
+if($id < 1) header('Location: lista.php');
+
 
 $sql = <<<SQL
 
